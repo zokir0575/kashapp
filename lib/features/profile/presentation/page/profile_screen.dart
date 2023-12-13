@@ -23,19 +23,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocProvider.value(
       value: userBloc,
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(0),
+          child: Container(),
+        ),
         body: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
-             return ListView.builder(
+            return ListView.builder(
+              padding: const EdgeInsets.all(20),
               itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(state.users[index].firstName, style: const TextStyle(color: Colors.black, fontSize: 20),),
-                      Text(state.users[index].lastName, style: const TextStyle(color: Colors.black, fontSize: 18),),
-                    ],
-                  ),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      state.users[index].firstName,
+                      style: const TextStyle(color: Colors.black, fontSize: 20),
+                    ),
+                    Text(
+                      state.users[index].lastName,
+                      style: const TextStyle(color: Colors.black, fontSize: 18),
+                    ),
+                  ],
                 );
               },
               itemCount: state.users.length,
